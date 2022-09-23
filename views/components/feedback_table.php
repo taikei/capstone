@@ -3,11 +3,9 @@
 
     include '../controllers/db_connection.php';
     if($_SESSION['role'] == 'admin'){
-        $query = 'SELECT * FROM sos';
+        $query = 'SELECT * FROM feedback';
     }elseif($_SESSION['role'] == 'user'){
-        $query = "SELECT * FROM sos WHERE User_ID_SOS LIKE '{$_SESSION['id']}'";
-    }elseif($_SESSION['role'] == 'support'){
-        $query = "SELECT * FROM sos WHERE Support_ID_SOS LIKE '{$_SESSION['id']}'";
+        $query = "SELECT * FROM feedback WHERE User_ID_feedback LIKE '{$_SESSION['id']}'";
     }
     
     $result = $GLOBALS['mysqli']->query($query);
@@ -17,67 +15,61 @@
         <table class="table table-striped">
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Job Type</th>
-                <th scope="col">Job Description</th>
-                <th scope="col">Job Allocated to</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+                <th scope="col">Time</th>
                 <th scope="col">Sender</th>
-                <th scope="col">Status</th>
                 <th scope="col">Update</th>
                 <th scope="col">Remove</th>
             </tr>
         <?php
             while ($data = mysqli_fetch_assoc($result)) {
+
         ?>
-                    <tr scope="row">
-                        <td>
+                    <tr>
+                        <td scope="row">
                             <?php 
-                                echo $data['SOS_ID'];
+                                echo $data['Feedback_ID'];
                                 echo "<br>";
                             ?>
                         </td>
                         <td>
                             <?php 
-                                echo $data['SOS_Type'];
+                                echo $data['feedback_type'];
                                 echo "<br>"; 
                             ?>
                         </td>
                         <td>
                             <?php 
-                                echo $data['SOS_Description'];
+                                echo $data['feedback_description'];
                                 echo "<br>"; 
                             ?>
                         </td>
                         <td>
                             <?php 
-                                echo $data['Support_ID_SOS'];
+                                echo $data['date'];
                                 echo "<br>"; 
                             ?>
                         </td>
                         <td>
                             <?php 
-                                echo $data['User_ID_SOS'];
+                                echo $data['User_ID_feedback'];
                                 echo "<br>"; 
                             ?>
                         </td>
                         <td>
-                            <?php 
-                                echo $data['SOS_Status'];
-                                echo "<br>"; 
-                            ?>
-                        </td>
-                        <td>
-                            <a href="" data-toggle="modal" data-target="<?php echo '#edit'.$data['SOS_ID']?>">
+                            <a href="" data-toggle="modal" data-target="<?php echo '#edit'.$data['Feedback_ID']?>">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
 
                             <!-- Edit Modal -->
-                                <div class="modal fade" id="<?php echo 'edit'.$data['SOS_ID']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="<?php echo 'edit'.$data['Feedback_ID']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
                                     <div class="modal-content">
-                                      <form method="POST" action="../controllers/edit_sos.php">
+                                      <form method="POST" action="../controllers/edit_feedback.php">
 
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Edit SOS job?</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">Edit the feedback?</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -87,38 +79,39 @@
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-12">
-                                                            <label class="control-label" for="complaint_id">SOS ID:</label>
+                                                            <label class="control-label" for="feedback_id">Feedback ID:</label>
                                                         </div>
                                                         <div class="col-12">
-                                                            <input type="text" value="<?php echo $data["SOS_ID"]?>" name="sos_id"  class="form-control" readonly/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <label class="control-label" for="headline">Job Type:</label>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <select id="job_type" name="type" class="custom-select" required>
-                                                                <option value="<?php echo $data["SOS_Type"]?>" selected><?php echo $data["SOS_Type"]?></option>
-                                                                <option value="Electrical System Repairs">Electrical System Repairs</option>
-                                                                <option value="Emergency Maintenance">Emergency Maintenance</option>
-                                                                <option value="Pest Control">Pest Control</option>
-                                                                <option value="Property Damage">Property Damage</option>
-                                                                <option value="Wear and Tear Repairs">Wear and Tear Repairs</option>
-                                                                <option value="Other">Other</option>
-                                                            </select>
+                                                            <input type="text" value="<?php echo $data["Feedback_ID"]?>" name="feedback_id"  class="form-control" readonly/>
                                                         </div>
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-12">
-                                                            <label class="control-label" for="desc">Description:</label>
+                                                            <label class="control-label" for="status">Feedback Type:</label>
                                                         </div>
                                                         <div class="col-12">
-                                                            <textarea rows="4" name="desc" class="form-control"><?php echo $data['SOS_Description']?></textarea>
+                                                            <div class="">
+                                                                <select required="" name="type" class="custom-select" required>
+                                                                    <option value="<?php echo $data["feedback_type"]?>" disabled selected><?php echo $data["feedback_type"]?></option>
+                                                                    <option value="Comment">Comment</option>
+                                                                    <option value="Suggestion">Suggestion</option>
+                                                                    <option value="Question">Question</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                 <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <label class="control-label" for="description">Description:</label>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <textarea rows="4" name="description" class="form-control"><?php echo $data['feedback_description']?></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -128,7 +121,6 @@
                                             <div class="modal-footer">
                                                     <input type="submit" class="btn btn-secondary" data-dismiss="modal" value="Cancel"/>
                                                     <input type="submit" class="btn btn-primary" value="Save"/>
-                                                    <input name="id" value="<?php echo $data["SOS_ID"]?>" hidden />
                                             </div>
 
                                       </form>
@@ -140,28 +132,28 @@
 
                         </td>
                         <td>
-                            <a href="" data-toggle="modal" data-target="<?php echo '#remove'.$data['SOS_ID']?>">
+                            <a href="" data-toggle="modal" data-target="<?php echo '#remove'.$data['Feedback_ID']?>">
                                 <i class="fa-regular fa-trash-can"></i>
                             </a>
 
                             <!-- Remove Modal -->
-                                <div class="modal fade" id="<?php echo 'remove'.$data['SOS_ID']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="<?php echo 'remove'.$data['Feedback_ID']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                       <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Delete SOS Job</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Withdraw the Feedback ID: <?php echo $data['Feedback_ID'];?>?</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                           <span aria-hidden="true">&times;</span>
                                         </button>
                                       </div>
                                       <div class="modal-body">
-                                        Are you sure you want to remove this SOS job?
+                                        Are you sure you want to remove this feedback?
                                       </div>
                                       <div class="modal-footer">
-                                        <form method="POST" action="../controllers/remove_sos.php">
+                                        <form method="POST" action="../controllers/remove_feedback.php">
                                             <input type="submit" class="btn btn-secondary" data-dismiss="modal" value="Cancel"/>
                                             <input type="submit" class="btn btn-danger" value="Remove"/>
-                                            <input name="id" value="<?php echo $data["SOS_ID"]?>" hidden />
+                                            <input name="feedback_id" value="<?php echo $data["Feedback_ID"]?>" hidden />
                                         </form>
                                       </div>
                                     </div>
@@ -181,4 +173,8 @@
         <?php
             } else { echo "Error!"; }
         ?>
+
+
+
+
 
