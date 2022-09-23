@@ -2,7 +2,7 @@
 
 $host = "localhost"; 
 $user = "root"; 
-$password = "root"; 
+$password = ""; 
 $dbname = "capstone_project"; 
 
 // establish connection with db
