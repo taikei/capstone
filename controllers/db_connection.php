@@ -1,8 +1,8 @@
 <?php
 
 $host = "localhost"; 
-$user = "root"; 
-$password = ""; 
+$user = "admin"; 
+$password = "Hello321!"; 
 $dbname = "capstone_project"; 
 
 // establish connection with db
