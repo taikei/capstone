@@ -30,16 +30,17 @@ if (!$mysqli) {
 
 $sql = "SELECT * FROM {$_SESSION['role']} WHERE $id_type LIKE '{$_SESSION['id']}' AND Password LIKE '{$_SESSION['pwd']}'";
 
+echo $sql;
 
-$result = $mysqli->query($sql);
+// $result = $mysqli->query($sql);
 
-if (mysqli_num_rows($result) > 0) {
-    $row = mysqli_fetch_assoc($result);
-    header("Location: ../views/dashboard.php");
+// if (mysqli_num_rows($result) > 0) {
+//     $row = mysqli_fetch_assoc($result);
+//     header("Location: ../views/dashboard.php");
     
-} else {
-    header("Location: ../index.php");
-}
+// } else {
+//     header("Location: ../index.php");
+// }
 
 
 
