@@ -1,5 +1,7 @@
 
-<?php require("sidebar.php")?>
+<?php 
+session_start();
+require("sidebar.php")?>
 <?php require("header.php")?>     
 
     <!-- Begin Page Content -->
