@@ -1,10 +1,10 @@
 <?php
-include "../config.php";
+include_once "../config.php";
 
 // Check user login or not
-if(!isset($_SESSION['uname'])){
-    header('Location: ../index.php');
-}
+// if(!isset($_SESSION['uname'])){
+//     header('Location: ../index.php');
+// }
 
 // logout
 if(isset($_POST['but_logout'])){
@@ -21,6 +21,11 @@ if(isset($_POST['but_logout'])){
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">This is Dashboard Page</h1>
+                    <?php
+                        echo $_SESSION['id'];
+                        echo $_SESSION['pwd'];
+                        echo $_SESSION['role'];
+                    ?>
 
                 </div>
                 <!-- /.container-fluid -->
