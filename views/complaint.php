@@ -45,22 +45,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group ">
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <label class="control-label h4" for="status"><strong>Status</strong><span class="text-danger">*</span></label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <div class="">
-                                        <select required="" name="your_status" class="custom-select" required>
-                                            <option value="" disabled selected>- Select Status -</option>
-                                            <option value="Urgent">Urgent</option>
-                                            <option value="Not Urgent">Not Urgent</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div class="form-group form-submit-btn-holder text-center col-sm-12">
                             <button class="btn btn-primary btn-lg" type="submit" name="submit" value="Submit" id="submit_form" >Submit</button>
                         </div>

@@ -113,28 +113,40 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group ">
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <label class="control-label" for="status">Status:</label>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <div class="">
-                                                                <select name="status" class="custom-select">
-                                                                    <option value="Urgent">Urgent</option>
-                                                                    <option value="Not Urgent">Not Urgent</option>
-                                                                </select>
+                                                <?php 
+
+                                                    if($_SESSION['role'] == 'admin'){
+                                                       echo '
+                                                       <div class="form-group ">
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <label class="control-label" for="status">Status:</label>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <select name="status" class="custom-select">
+                                                                        <option value="'.$data["status"].'" selected>'.$data["status"].'</option>
+                                                                        <option value="Open">Open</option>
+                                                                        <option value="In Progress">In Progress</option>
+                                                                        <option value="Completed">Completed</option>
+                                                                    </select>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
+                                                       ';
+                                                    }elseif($_SESSION['role'] == 'user'){
+                                                        echo '<input name="status" value="'.$data["status"].'" hidden />';
+                                                    }
+
+                                                ?>
+                                                
+                                                
 
                                             </div>
 
                                             <div class="modal-footer">
                                                     <input type="submit" class="btn btn-secondary" data-dismiss="modal" value="Cancel"/>
                                                     <input type="submit" class="btn btn-primary" value="Save"/>
-                                                    <input name="id" value="<?php echo $data["Complaint_ID"]?>" hidden />
+                                                    <input name="id" value="<?php echo $data["Complaint_ID"]?>" hidden />              
                                             </div>
 
                                       </form>
