@@ -13,7 +13,7 @@
            '
                 <h1 class="h3 mb-4 text-gray-800">Add New Complaint</h1>
                 <br>
-                    <form name="contact-form" action="../controllers/insert_complaint.php" method="post" id="contact-form">
+                    <form name="contact-form" action="../controllers/insert_complaint.php" method="post" id="contact-form" enctype="multipart/form-data">
 
                         <div class="form-group">
                             <div class="row">
@@ -42,6 +42,19 @@
                                 </div>
                                 <div class="col-sm-8">
                                         <input id="ctrl-sender" type="text" value="'.$uname.'" name="your_sender"  class="form-control" readonly/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <label class="control-label h4" for="uploadfile"><strong>Upload Attachment</strong><span class="text-danger">*</span></label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="">
+                                        <input type="file" id="uploadfile" name="uploadfile" value="" required>    
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
