@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php require("sidebar.php")?>
 <?php require("header.php")?>  
 
@@ -11,31 +10,13 @@
         echo "Database connection failed.";
     }
 	?>   
-=======
-
-<?php 
-session_start();
-require("sidebar.php")?>
-<?php require("header.php")?>     
->>>>>>> 2d2331b615028a85ba5788171ff421a3ee676f9b
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
         <!-- Page Heading -->
-<<<<<<< HEAD
         <h1 class="h3 mb-4 text-gray-800">
 		Welcome to Little Hoteliers Apartment Management System, </h1>
-=======
-        <h1 class="h3 mb-4 text-gray-800">Welcome Back <?php print_r($_SESSION['id'] )?></h1>
-        
-        <?php
-            echo $_SESSION['id'];
-            echo $_SESSION['pwd'];
-            echo $_SESSION['role'];
-        ?>
-        
->>>>>>> 2d2331b615028a85ba5788171ff421a3ee676f9b
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800"> 

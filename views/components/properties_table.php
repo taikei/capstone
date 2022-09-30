@@ -20,16 +20,16 @@
                 <th scope="col">Time</th>
                 <th scope="col">Sender</th>
                 <th scope="col">Status</th>
-				<?php	if($_SESSION['role'] == 'admin'){
-					echo '
-						<th scope="col">Update</th>
-						<th scope="col">Remove</th>
-					';
-				}
-							
-				?>
+                <?php   if($_SESSION['role'] == 'admin'){
+                    echo '
+                        <th scope="col">Update</th>
+                        <th scope="col">Remove</th>
+                    ';
+                }
+                            
+                ?>
             </tr>
-			
+            
         <?php
             while ($data = mysqli_fetch_assoc($result)) {
         ?>
