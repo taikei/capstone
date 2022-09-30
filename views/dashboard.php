@@ -1,22 +1,13 @@
 <?php require("sidebar.php")?>
 <?php require("header.php")?>  
 
-<?php
-    $connection = mysqli_connect("localhost", "myusername", "mypassword", 
-                                                 "capstone_project");
-      
-    if (mysqli_connect_errno())
-    {
-        echo "Database connection failed.";
-    }
-	?>   
+<?php $connection = mysqli_connect("localhost", "myusername", "mypassword", "capstone_project");?>   
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">
-		Welcome to Little Hoteliers Apartment Management System, </h1>
+        <h1>Welcome to Little Hoteliers Apartment Management System</h1>
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800"> 
@@ -173,23 +164,23 @@
                                                 Total Users</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
 											
-<?php      
-    $query = "SELECT User_ID, Password FROM user";
-      
-    $result = mysqli_query($connection, $query);
-      
-    if ($result)
-    {
-        $row = mysqli_num_rows($result);
-          
-           if ($row)
-              {
-                 printf("" . $row);
-              }
-        mysqli_free_result($result);
-    }
+                                                    <?php      
+                                                        $query = "SELECT User_ID, Password FROM user";
+                                                          
+                                                        $result = mysqli_query($connection, $query);
+                                                          
+                                                        if ($result)
+                                                        {
+                                                            $row = mysqli_num_rows($result);
+                                                              
+                                                               if ($row)
+                                                                  {
+                                                                     printf("" . $row);
+                                                                  }
+                                                            mysqli_free_result($result);
+                                                        }
 
-?>
+                                                    ?>
 											
 											</div>
                                         </div>
@@ -223,16 +214,16 @@
                                 <div class="card-body">
                                     <div>
                                         
-					G'day <?php print_r($_SESSION['id'] )?>,<br>
-					
-					This is your one stop shop for organising your property. <br><br>
-					
-					Here you'll be able to check your user profile, submit a SOS job, complaint and feedback <br><br>
-					
-					if you have any questions, we're always here. <br>
-					Please feel free to call or email us.<br><br>
-					
-					We hope you have a wonderful day.
+                        					G'day <?php print_r($_SESSION['id'] )?>,<br>
+                        					
+                        					This is your one stop shop for organising your property. <br><br>
+                        					
+                        					Here you'll be able to check your user profile, submit a SOS job, complaint and feedback <br><br>
+                        					
+                        					if you have any questions, we're always here. <br>
+                        					Please feel free to call or email us.<br><br>
+                        					
+                        					We hope you have a wonderful day.
 					
                                     </div>
                                 </div>
@@ -245,8 +236,7 @@
 				
 
 				
-<link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-<link rel="stylesheet" href="../vendor/fontawesome-free/css/fontawesome.css">
+
   
                     <div id="sparkline-1" hidden></div>
                     <div id="sparkline-2" hidden></div>
