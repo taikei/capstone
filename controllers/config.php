@@ -30,6 +30,7 @@ if (!$mysqli) {
 
 $sql = "SELECT * FROM {$_SESSION['role']} WHERE $id_type LIKE '{$_SESSION['id']}' AND Password LIKE '{$_SESSION['pwd']}'";
 
+echo $sql;
 
 $result = $mysqli->query($sql);
 
@@ -38,7 +39,8 @@ if (mysqli_num_rows($result) > 0) {
     header("Location: ../views/dashboard.php");
     
 } else {
-    header("Location: ../index.php");
+    // header("Location: ../index.php");
+    print_r($row);
 }
 
 
