@@ -1,6 +1,6 @@
 <?php
 
-// session_start();
+session_start();
 $_SESSION['id'] = $_POST['txt_uname'];
 $_SESSION['pwd'] = $_POST['txt_pwd'];
 $_SESSION['role'] = $_POST['role'];
