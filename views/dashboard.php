@@ -1,311 +1,122 @@
-<?php require("sidebar.php")?>
-<?php require("header.php")?>  
+<?php 
+require("sidebar.php");
+require("header.php");
+include '../controllers/db_connection.php';
+?>  
 
-<?php $connection = mysqli_connect("localhost", "myusername", "mypassword", "capstone_project");?>   
+
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
-        <!-- Page Heading -->
-        <h1>Welcome to Little Hoteliers Apartment Management System</h1>
+        
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800"> 
-					</h1>
+        <!-- Main Content -->
+        <div id="content">
 
-					</div>
-    <!-- /.container-fluid -->
 
-	<!DOCTYPE html>
-<html lang="en">
+            <div class="container-fluid">
+                <!-- Page Heading -->
+        <div class="h1 text-primary pt-4 pb-4">Welcome to Little Hoteliers Apartment Management System</div>
+            <div class="row">
+                <?php 
 
-<body id="page-top">
+                    if($_SESSION['role'] == 'admin'){
+                        
+                        $sql = 'SELECT (SELECT COUNT(*) FROM complaint) AS COMPLAINTS, (SELECT COUNT(*) FROM feedback) AS FEEDBACKS, (SELECT COUNT(*) FROM sos) AS "SOS JOBS", (SELECT COUNT(*) FROM user) AS "TOTAL USERS";';
+                        $result = $GLOBALS['mysqli']->query($sql);
+                        $row = $result -> fetch_assoc();
 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- Page Heading -->
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Complaints</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-											
-
-<?php      
-    $query = "SELECT Complaint_ID, headline FROM complaint";
-      
-    $result = mysqli_query($connection, $query);
-      
-    if ($result)
-    {
-        $row = mysqli_num_rows($result);
-          
-           if ($row)
-              {
-                 printf("" . $row);
-              }
-        mysqli_free_result($result);
-    }
-?>
-											
-											</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Feedbacks</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-<?php      
-    $query = "SELECT Feedback_ID, feedback_type FROM feedback";
-      
-    $result = mysqli_query($connection, $query);
-      
-    if ($result)
-    {
-        $row = mysqli_num_rows($result);
-          
-           if ($row)
-              {
-                 printf("" . $row);
-              }
-        mysqli_free_result($result);
-    }
-
-?>											
-											</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">SOS Jobs
-                                            </div>
+                        foreach($row as $key => $value){
+                            echo '
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
                                             <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        '.$key.'
+                                                    </div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        '.$value.' 
+                                                    </div>
+                                                </div>
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-													
-<?php      
-    $query = "SELECT SOS_ID, SOS_Type FROM sos";
-      
-    $result = mysqli_query($connection, $query);
-      
-    if ($result)
-    {
-        $row = mysqli_num_rows($result);
-          
-           if ($row)
-              {
-                 printf("" . $row);
-              }
-        mysqli_free_result($result);
-    }
-
-?>
-													
-													</div>
+                                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            ';
+                        }
+                    }
 
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Total Users</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-											
-                                                    <?php      
-                                                        $query = "SELECT User_ID, Password FROM user";
-                                                          
-                                                        $result = mysqli_query($connection, $query);
-                                                          
-                                                        if ($result)
-                                                        {
-                                                            $row = mysqli_num_rows($result);
-                                                              
-                                                               if ($row)
-                                                                  {
-                                                                     printf("" . $row);
-                                                                  }
-                                                            mysqli_free_result($result);
-                                                        }
+                ?>
+	       </div>
 
-                                                    ?>
-											
-											</div>
+                        <div class="row">
+                         <!-- Area Chart -->
+                            <div class="col-xl-8 col-lg-7">
+                                <div class="card shadow mb-4">
+
+                                        <!-- Card Header - Dropdown -->
+                                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                            <h6 class="m-0 font-weight-bold text-primary">Welcome to Little Hoteliers Apartment Management System</h6>
+                                            <div class="dropdown no-arrow">
+                                            </div>	
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-					
-					
-
-                    <!-- Content Row -->
-
-                    <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Welcome to Little Hoteliers Apartment Management System</h6>
-                                    <div class="dropdown no-arrow">
-                                    </div>
-									
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div>
                                         
-                        					G'day <?php print_r($_SESSION['id'] )?>,<br>
-                        					
-                        					This is your one stop shop for organising your property. <br><br>
-                        					
-                        					Here you'll be able to check your user profile, submit a SOS job, complaint and feedback <br><br>
-                        					
-                        					if you have any questions, we're always here. <br>
-                        					Please feel free to call or email us.<br><br>
-                        					
-                        					We hope you have a wonderful day.
-					
-                                    </div>
+                                         <!-- Card Body -->
+                                        <div class="card-body">
+                                            <div class="h3 text-warning">G'day <?php echo ($_SESSION['id'] )?>!</div>
+                                            <br><br>
+                                    		<div class="lead">
+                                                This is your one stop shop for organising your property. Here you'll be able to check your user profile, submit a SOS job, complaint and feedback. if you have any questions, we're always here. Please feel free to call or email us. 
+                                            </div>
+                                            <br><br>
+                                            <div class="h3">
+                                                Have a wonderful day!!
+                                            </div>
+            					
+                                            <div></div>
+                                        </div>
                                 </div>
                             </div>
+
+                                    
+                            <div class="col-xl-4 col-lg-5">
+                                <div id="sparkline-1" hidden></div>
+                                <div id="sparkline-2" hidden></div>
+                                <div id="sparkline-3" hidden></div>
+
+                                <div class="card-header border-0">
+                                <h3 class="card-title">
+                                    <i class="far fa-calendar-alt"></i>
+                                    Calendar
+                                </h3>
+                                </div>
+
+                                <div class="card-body pt-0">
+                                    <div id="calendar" class="calendar1"></div>
+                                </div>
+                            </div>
+                            </div>
+
                         </div>
-
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                           
-				
-
-				
-
-  
-                    <div id="sparkline-1" hidden></div>
-                    <div id="sparkline-2" hidden></div>
-                    <div id="sparkline-3" hidden></div>
-
-              <div class="card-header border-0">
-
-                <h3 class="card-title">
-                  <i class="far fa-calendar-alt"></i>
-                  Calendar
-                </h3>
-              </div>
-              <div class="card-body pt-0">
-                <div id="calendar" class="calendar1"></div>
-              </div>
-
-
-
-<script src="../plugins/jquery/jquery.min.js"></script>
-<script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
-<script src="../plugins/sparklines/sparkline.js"></script>
-<script src="../plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-<script src="../plugins/jquery-knob/jquery.knob.min.js"></script>
-<script src="../plugins/moment/moment.min.js"></script>
-<script src="../plugins/daterangepicker/daterangepicker.js"></script>
-<script src="../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<script src="../plugins/summernote/summernote-bs4.min.js"></script>
-<script src="../dist/js/pages/dashboard.js"></script>
-                        </div>
-                    </div>
-
                 </div>
-                <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
 
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
-
-</body>
-
-</html>
 
 <?php require("footer.php"); ?>
            
