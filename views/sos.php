@@ -13,7 +13,7 @@
            '
                 <h1 class="h3 mb-4 text-gray-800">Add New SOS Jobs</h1>
                 <br>
-                    <form name="sos_form" action="../controllers/insert_sos.php" method="POST" id="sos_form">
+                    <form name="sos_form" action="../controllers/insert_sos.php" method="POST" id="sos_form" enctype="multipart/form-data">
 
                             <div class="form-group">
                                 <div class="row">
@@ -43,6 +43,21 @@
                                     </div>
                                 </div>
                             </div>
+
+                             <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <label class="control-label h4" for="uploadfile"><strong>Upload Attachment</strong><span class="text-danger">*</span></label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="">
+                                            <input type="file" id="uploadfile" name="uploadfile" value="" required>    
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="form-group" hidden>
                                 <div class="row">
                                     <div class="col-sm-2"></div>

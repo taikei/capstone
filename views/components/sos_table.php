@@ -19,6 +19,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Job Type</th>
                 <th scope="col">Job Description</th>
+                <th scope="col">Attachment</th>
                 <th scope="col">Job Allocated to</th>
                 <th scope="col">Sender</th>
                 <th scope="col">Status</th>
@@ -46,6 +47,26 @@
                                 echo $data['SOS_Description'];
                                 echo "<br>"; 
                             ?>
+                        </td>
+                        <td>
+                            <a href="" data-toggle="modal" data-target="<?php echo '#filename'.$data['SOS_ID']?>">
+                            <?php echo $data['filename'];?>
+                            </a>
+
+                            <!-- filename Modal -->
+                            <div class="modal fade" id="<?php echo 'filename'.$data['SOS_ID']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                    <br><br><br>
+                                    <img src="../img/<?php echo $data['filename']; ?>" width="500">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- filename Modal -->
+                                
+                            <?php echo "<br>"; ?>
                         </td>
                         <td>
                             <?php 

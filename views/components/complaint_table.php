@@ -54,17 +54,14 @@
 
                             <!-- filename Modal -->
                             <div class="modal fade" id="<?php echo 'filename'.$data['Complaint_ID']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                            <h5 class="modal-title" id="exampleModalLabel"></h5>
-                            <br><br><br>
-                            <img src="../img/<?php echo $data['filename']; ?>" width="500">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                            </div>
-
-                            </div>
-                            </div>
+                                <div class="modal-dialog" role="document">
+                                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                    <br><br><br>
+                                    <img src="../img/<?php echo $data['filename']; ?>" width="500">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
                             </div>
                             <!-- filename Modal -->
                                 
