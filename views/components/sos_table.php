@@ -9,8 +9,20 @@
     }elseif($_SESSION['role'] == 'support'){
         $query = "SELECT * FROM sos WHERE Support_ID_SOS LIKE '{$_SESSION['id']}'";
     }
+
+    // get the list of Supports
+    $sql = 'SELECT Support_ID, ProviderName FROM support';
+    $result = $GLOBALS['mysqli']->query($sql);
+    $support = $result -> fetch_all();
+    $providers = '';
+    foreach($support as $value){
+         $providers .= '<option value="'.$value[0].'">'.$value[0].'</option>';
+    }
     
     $result = $GLOBALS['mysqli']->query($query);
+
+
+    
 
     if ($result == TRUE) {
 ?>
@@ -118,10 +130,10 @@
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-12">
-                                                            <label class="control-label" for="headline">Job Type:</label>
+                                                            <label class="control-label" for="type">Job Type:</label>
                                                         </div>
                                                         <div class="col-12">
-                                                            <select id="job_type" name="type" class="custom-select" required>
+                                                            <select id="job_type" name="type" class="custom-select">
                                                                 <option value="<?php echo $data["SOS_Type"]?>" selected><?php echo $data["SOS_Type"]?></option>
                                                                 <option value="Electrical System Repairs">Electrical System Repairs</option>
                                                                 <option value="Emergency Maintenance">Emergency Maintenance</option>
@@ -143,6 +155,49 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <?php 
+                                                    if($_SESSION['role'] != 'user'){
+
+                                                        $flag = '';
+                                                        if($_SESSION['role'] == 'support'){
+                                                            $flag = 'disabled';
+                                                        }
+                                                        echo '
+                                                            <div class="form-group">
+                                                                <div class="row">
+                                                                    <div class="col-12">
+                                                                        <label class="control-label" for="support">Support Team:</label>
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <select id="support" name="support" class="custom-select" required '.$flag.'>
+                                                                            <option value="'.$data["Support_ID_SOS"].'" selected>'.$data["Support_ID_SOS"].'</option>
+                                                                            '.$providers.'
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <div class="row">
+                                                                    <div class="col-12">
+                                                                        <label class="control-label" for="status">Status:</label>
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <select name="status" class="custom-select">
+                                                                            <option value="'.$data["SOS_Status"].'" selected required>'.$data["SOS_Status"].'</option>
+                                                                            <option value="Open">Open</option>
+                                                                            <option value="Assigned">Assigned</option>
+                                                                            <option value="Appointed">Appointed</option>
+                                                                            <option value="Completed">Completed</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        ';
+                                                    }
+                                                ?>
+                                                
 
                                             </div>
 

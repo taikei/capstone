@@ -10,7 +10,7 @@
     $folder = "../img/" . $filename;
 
 
-	$query = "INSERT INTO sos (SOS_Type, SOS_Description, filename, SOS_Status, User_ID_SOS) VALUES ('".$type."','".$desc."','".$filename."','Not Started','".$sender."')";
+	$query = "INSERT INTO sos (SOS_Type, SOS_Description, filename, SOS_Status, User_ID_SOS) VALUES ('".$type."','".$desc."','".$filename."','Open','".$sender."')";
 
 	$result = $GLOBALS['mysqli']->query($query);
 
